@@ -5,10 +5,9 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "export": "next export"
+    "lint": "next lint"
   },
+
   "dependencies": {
     "dotenv": "^16.4.7",
     "emailjs-com": "^3.2.0",
