@@ -62,6 +62,16 @@ body {
   gap: 2rem;
 }
 
+.button  {
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  background: var(--mardi-gras-gold);
+  color: var(--background);
+  text-decoration: none;
+  text-align: center;
+  display: inline-block;
+}
+
 @media (min-width: 768px) {
   .contact-section {
     flex-direction: row;

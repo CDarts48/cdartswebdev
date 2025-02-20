@@ -224,10 +224,10 @@ export default function Home() {
       <div className="contact-info flex-2 space-y-4 mt-8 md:mt-0">
         <h3 className="text-2xl font-bold mardi-gras-gold">Contact Information</h3>
         <p className="mt-4 text-gray-500 dark:text-gray-400">
-          <strong>Email:</strong> CDArtsWebDev@gmail.com
+          <strong>Email:</strong> <a href="mailto:CDArtsWebDev@gmail.com" className="text-mardi-gras-purple hover:underline">CDArtsWebDev@gmail.com</a>
         </p>
         <p className="mt-2 text-gray-500 dark:text-gray-400">
-          <strong>Phone:</strong> (720) 391-8819
+          <strong>Phone:</strong> <a href="tel:+17203918819" className="text-mardi-gras-purple hover:underline">(720) 391-8819</a>
         </p>
         <p className="mt-2 text-gray-500 dark:text-gray-400">
           <strong>LinkedIn:</strong> <Link href="https://www.linkedin.com/in/coreydonahue21010/" className="text-mardi-gras-purple hover:underline">linkedin.com/in/corey</Link>
@@ -243,10 +243,10 @@ export default function Home() {
       <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t mardi-gras-gold">
         <p className="text-xs text-gray-500 dark:text-gray-400">© 2025 CDArtsWebDev. All rights reserved.</p>
         <nav className="sm:ml-auto flex gap-4 sm:gap-6">
-          <Link className="text-xs hover:underline underline-offset-4 mardi-gras-purple" href="#">
+          <Link className="text-xs hover:underline underline-offset-4 mardi-gras-purple" href="https://github.com/CDarts48">
             GitHub
           </Link>
-          <Link className="text-xs hover:underline underline-offset-4 mardi-gras-green" href="#">
+          <Link className="text-xs hover:underline underline-offset-4 mardi-gras-green" href="https://www.linkedin.com/in/coreydonahue21010/">
             LinkedIn
           </Link>
         </nav>
