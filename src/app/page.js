@@ -1,6 +1,10 @@
+"use client"
+
 import Image from "next/image"
 import Link from "next/link"
 import { Code, Laptop, Rocket, Send } from "lucide-react"
+import emailjs from 'emailjs-com'
+import { useRef, useState } from 'react'
 
 const projects = [
   {
@@ -27,6 +31,32 @@ const projects = [
 ];
 
 export default function Home() {
+  const form = useRef();
+  const [clickCount, setClickCount] = useState(0);
+  const [emailSent, setEmailSent] = useState(false);
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    if (clickCount === 1) {
+      emailjs.sendForm(
+        process.env.NEXT_PUBLIC_YOUR_SERVICE_ID,
+        process.env.NEXT_PUBLIC_YOUR_TEMPLATE_ID,
+        form.current,
+        process.env.NEXT_PUBLIC_YOUR_USER_ID
+      )
+        .then((result) => {
+            console.log('Email sent successfully:', result.text);
+            setEmailSent(true); // Set emailSent to true after successful email send
+        }, (error) => {
+            console.error('Failed to send email:', error.text);
+            setClickCount(0); // Reset click count after email send failure
+        });
+    } else {
+      setClickCount(1);
+    }
+  };
+
   return (
     <div className="flex flex-col min-h-screen">
       <header className="px-4 lg:px-6 h-14 flex items-center mardi-gras-purple">
@@ -164,25 +194,32 @@ export default function Home() {
     </div>
     <div className="flex flex-col md:flex-row gap-8">
       <div className="contact-section flex-1">
-        <form className="mt-8 w-2/3 space-y-4 flex flex-col">
-          <input
-            className="flex-grow h-5 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 mardi-gras-purple"
-            placeholder="Your Name"
-          />
-          <input
-            className="flex-grow h-5 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 mardi-gras-green"
-            type="email"
-            placeholder="Your Email"
-          />
-          <textarea
-            className="flex-grow min-h-[80px] rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 mardi-gras-gold"
-            placeholder="Your Message"
-          />
-          <button className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 mardi-gras-purple">
-            <Send className="mr-2 h-4 w-4" />
-            Send Message
-          </button>
-        </form>
+        {emailSent ? (
+          <p className="text-xl font-bold text-mardi-gras-gold">Thank you for your email! I look forward to speaking with you.</p>
+        ) : (
+          <form ref={form} onSubmit={sendEmail} className="mt-8 w-1/2 space-y-4 flex flex-col">
+            <input
+              className="flex-grow h-5 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 mardi-gras-purple"
+              placeholder="Your Name"
+              name="from_name" // Ensure this matches the template parameter
+            />
+            <input
+              className="flex-grow h-5 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 mardi-gras-green"
+              type="email"
+              placeholder="Your Email"
+              name="reply_to" // Ensure this matches the template parameter
+            />
+            <textarea
+              className="flex-grow min-h-[80px] rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 mardi-gras-gold"
+              placeholder="Your Message"
+              name="message" // Ensure this matches the template parameter
+            />
+            <button type="button" onClick={sendEmail} className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 mardi-gras-purple">
+              <Send className="mr-2 h-4 w-4" />
+              {clickCount === 1 ? 'Click again to confirm' : 'Send Message'}
+            </button>
+          </form>
+        )}
       </div>
       <div className="contact-info flex-2 space-y-4 mt-8 md:mt-0">
         <h3 className="text-2xl font-bold mardi-gras-gold">Contact Information</h3>
