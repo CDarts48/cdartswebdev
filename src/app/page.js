@@ -38,6 +38,22 @@ export default function Home() {
   const sendEmail = (e) => {
     e.preventDefault();
 
+    const email = form.current.reply_to.value;
+    const message = form.current.message.value;
+
+    // Regular expression for validating email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailRegex.test(email)) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+
+    if (message.trim() === "") {
+      alert("Please enter a message.");
+      return;
+    }
+
     if (clickCount === 1) {
       emailjs.sendForm(
         process.env.NEXT_PUBLIC_YOUR_SERVICE_ID,
@@ -214,8 +230,8 @@ export default function Home() {
               placeholder="Your Message"
               name="message" // Ensure this matches the template parameter
             />
-            <button type="button" onClick={sendEmail} className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 mardi-gras-purple">
-              <Send className="mr-2 h-4 w-4" />
+            <button type="button" onClick={sendEmail} className="inline-flex items-center justify-center rounded-md text-xl font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-6 py-3 mardi-gras-gold">
+              <Send className="mr-5 h-5 w-5" />
               {clickCount === 1 ? 'Click again to confirm' : 'Send Message'}
             </button>
           </form>
