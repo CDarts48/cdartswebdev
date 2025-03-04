@@ -18,7 +18,7 @@ const projects = [
   {
     id: 2,
     title: "Investment AI",
-    description: "Investment.ai cost at least 2.2 million dollars, InvestmentAI.ai cost much less. A react frontend, server and database built off of Coinbase's AI bot.",
+    description: "Investment.ai cost at least 2.2 million dollars, InvestmentAI.ai cost much less. A react frontend, server and database using custom built LLMs, API calls and Typescript.",
     imageUrl: "/InvestmentAI.png?height=200&width=300",
     link: "https://github.com/CDarts48/agentkitJS"
   },
