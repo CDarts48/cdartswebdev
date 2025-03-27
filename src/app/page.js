@@ -18,7 +18,7 @@ const projects = [
   {
     id: 2,
     title: "Investment AI",
-    description: "InvestmentAI is a AI powered investment management and outlook tool. NextJS with a Postgres database using custom built LLMs, API calls and Typescript.",
+    description: "InvestmentAI is an AI powered investment management and outlook tool. NextJS with a Postgres database using custom built LLMs, API calls and Typescript.",
     imageUrl: "/InvestmentAI.png?height=200&width=300",
     link: "https://github.com/CDarts48/agentkitJS"
   },
