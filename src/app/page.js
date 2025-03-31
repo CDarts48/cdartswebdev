@@ -1,35 +1,85 @@
-// production build
 "use client"
 
 import Image from "next/image"
 import Link from "next/link"
 import { Code, Laptop, Rocket, Send } from "lucide-react"
-import emailjs from 'emailjs-com'
-import { useRef, useState } from 'react'
+import emailjs from "emailjs-com"
+import { useRef, useState } from "react"
 
+// Data for projects
 const projects = [
   {
     id: 1,
     title: "Topher's Maintenance and Repair",
-    description: "Topher's Maintenance and Repair is a React SSR landing page using Google Cloud and Ads in order to optimize SEO and increase traffic.",
-    imageUrl: "/Tophers.png?height=200&width=300", 
+    description:
+      "Topher's Maintenance and Repair is a React SSR landing page using Google Cloud and Ads in order to optimize SEO and increase traffic.",
+    imageUrl: "/Tophers.png?height=200&width=300",
     link: "https://www.tophersmandr.com/"
   },
   {
     id: 2,
     title: "Investment AI",
-    description: "InvestmentAI is an AI powered investment management and outlook tool. NextJS with a Postgres database using custom built LLMs, API calls and Typescript.",
+    description:
+      "An AI powered investment management and outlook tool. NextJS with a Postgres database using custom built LLMs, API calls and Typescript.",
     imageUrl: "/InvestmentAI.png?height=200&width=300",
-    link: "https://github.com/CDarts48/agentkitJS"
+    link: "https://www.investmentai.ai/"
   },
   {
     id: 3,
     title: "Colorado Films",
-    description: "A Full Stack stack web application for a film company in Colorado. Technologies include GraphQL, Node, Express, React and API calls.",
+    description:
+      "A Full Stack web application for a film company in Colorado. Technologies include GraphQL, Node, Express, React and API calls.",
     imageUrl: "/ColoradoFilms.png?height=200&width=300",
     link: "https://github.com/CDarts48/cofilms"
   }
-];
+]
+
+// Extracted ProjectCard component to keep code DRY
+function ProjectCard({ project }) {
+  const titleLink =
+    project.id === 2
+      ? "https://investmentai.ai"
+      : project.id === 3
+      ? "https://coloradofilms.com"
+      : project.link
+
+  return (
+    <div className="flex flex-col space-y-4 project-card">
+      <Link href={project.id === 2 ? "https://investmentai.ai" : project.link}>
+        <Image
+          src={project.imageUrl}
+          width={300}
+          height={200}
+          alt={project.title}
+          className="rounded-lg object-cover mardi-gras-green"
+        />
+      </Link>
+      <div className="content">
+        <h3 className="font-bold mardi-gras-gold">
+          {project.id === 2 || project.id === 3 ? (
+            <Link
+              href={titleLink}
+              className="text-mardi-gras-gold hover:text-gray-200 transition-colors"
+            >
+              {project.title}
+            </Link>
+          ) : (
+            project.title
+          )}
+        </h3>
+        <p className="text-sm text-gray-500 dark:text-gray-400 mardi-gras-gold">
+          {project.description}
+        </p>
+      </div>
+      <Link
+        href={project.link}
+        className="inline-flex h-9 items-center justify-center rounded-md border border-gray-200 bg-white px-4 py-2 text-sm font-medium shadow-sm transition-colors hover:bg-gray-100 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-800 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus-visible:ring-gray-300 mardi-gras-purple"
+      >
+        View Website
+      </Link>
+    </div>
+  )
+}
 
 export default function Home() {
   const form = useRef();
@@ -42,9 +92,8 @@ export default function Home() {
     const email = form.current.reply_to.value;
     const message = form.current.message.value;
 
-    // Regular expression for validating email format
+    // Validate email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
     if (!emailRegex.test(email)) {
       alert("Please enter a valid email address.");
       return;
@@ -62,13 +111,13 @@ export default function Home() {
         form.current,
         process.env.NEXT_PUBLIC_YOUR_USER_ID
       )
-        .then((result) => {
-            console.log('Email sent successfully:', result.text);
-            setEmailSent(true); // Set emailSent to true after successful email send
-        }, (error) => {
-            console.error('Failed to send email:', error.text);
-            setClickCount(0); // Reset click count after email send failure
-        });
+      .then((result) => {
+          console.log('Email sent successfully:', result.text);
+          setEmailSent(true);
+      }, (error) => {
+          console.error('Failed to send email:', error.text);
+          setClickCount(0);
+      });
     } else {
       setClickCount(1);
     }
@@ -98,7 +147,7 @@ export default function Home() {
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center space-y-4 text-center">
               <div className="space-y-2">
-                <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none mardi-gras-purple">
+                <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl mardi-gras-purple">
                   Corey Donahue
                 </h1>
                 <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400 mardi-gras-gold">
@@ -116,7 +165,6 @@ export default function Home() {
                   href="#projects"
                   className="inline-flex h-9 items-center justify-center rounded-md border border-gray-200 bg-white px-4 py-2 text-sm font-medium shadow-sm transition-colors hover:bg-gray-100 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-800 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus-visible:ring-gray-300 mardi-gras-green"
                 >
-                  View Projects
                 </Link>
               </div>
             </div>
@@ -165,96 +213,80 @@ export default function Home() {
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mardi-gras-gold">Featured Projects</h2>
             <div className="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
               {projects.map((project) => (
-                <div key={project.id} className="flex flex-col space-y-4 project-card">
-                  <Link href={project.id === 2 ? "https://investmentai.ai" : project.link}>
-                    <Image
-                      src={project.imageUrl}
-                      width={300}
-                      height={200}
-                      alt={project.title}
-                      className="rounded-lg object-cover mardi-gras-green"
-                    />
-                  </Link>
-                  <div className="content">
-                    <h3 className="font-bold mardi-gras-gold">
-                      {project.id === 2 ? (
-                        <Link href="https://investmentai.ai" className="text-mardi-gras-gold hover:text-gray-200 transition-colors">
-                          {project.title}
-                        </Link>
-                      ) : project.id === 3 ? (
-                        <Link href="https://coloradofilms.com" className="text-mardi-gras-gold hover:text-gray-200 transition-colors">
-                          {project.title}
-                        </Link>
-                      ) : (
-                        project.title
-                      )}
-                    </h3>
-                    <p className="text-sm text-gray-500 dark:text-gray-400 mardi-gras-gold">
-                      {project.description}
-                    </p>
-                  </div>
-                  <Link
-                    href={project.link}
-                    className="inline-flex h-9 items-center justify-center rounded-md border border-gray-200 bg-white px-4 py-2 text-sm font-medium shadow-sm transition-colors hover:bg-gray-100 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-800 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus-visible:ring-gray-300 mardi-gras-purple"
-                  >
-                    View Code
-                  </Link>
-                </div>
+                <ProjectCard key={project.id} project={project} />
               ))}
             </div>
           </div>
         </section>
         <section id="contact" className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800 mardi-gras-green">
-  <div className="container px-4 md:px-6">
-    <div className="flex flex-col md:flex-row justify-between">
-      <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mardi-gras-gold">Get in Touch</h2>
-    </div>
-    <div className="flex flex-col md:flex-row gap-8">
-      <div className="contact-section flex-1">
-        {emailSent ? (
-          <p className="text-xl font-bold text-mardi-gras-gold">Thank you for your email! I look forward to speaking with you.</p>
-        ) : (
-          <form ref={form} onSubmit={sendEmail} className="mt-8 w-1/2 space-y-4 flex flex-col">
-            <input
-              className="flex-grow h-5 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 mardi-gras-purple"
-              placeholder="Your Name"
-              name="from_name" // Ensure this matches the template parameter
-            />
-            <input
-              className="flex-grow h-5 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 mardi-gras-green"
-              type="email"
-              placeholder="Your Email"
-              name="reply_to" // Ensure this matches the template parameter
-            />
-            <textarea
-              className="flex-grow min-h-[80px] rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 mardi-gras-gold"
-              placeholder="Your Message"
-              name="message" // Ensure this matches the template parameter
-            />
-            <button type="button" onClick={sendEmail} className="inline-flex items-center justify-center rounded-md text-xl font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-6 py-3 mardi-gras-gold">
-              <Send className="mr-5 h-5 w-5" />
-              {clickCount === 1 ? 'Click again to confirm' : 'Send Message'}
-            </button>
-          </form>
-        )}
-      </div>
-      <div className="contact-info flex-2 space-y-4 mt-8 md:mt-0">
-        <h3 className="text-2xl font-bold mardi-gras-gold">Contact Information</h3>
-        <p className="mt-4 text-gray-500 dark:text-gray-400">
-          <strong>Email:</strong> <a href="mailto:CDArtsWebDev@gmail.com" className="text-mardi-gras-purple hover:underline">CDArtsWebDev@gmail.com</a>
-        </p>
-        <p className="mt-2 text-gray-500 dark:text-gray-400">
-          <strong>Phone:</strong> <a href="tel:+17203918819" className="text-mardi-gras-purple hover:underline">(720) 391-8819</a>
-        </p>
-        <p className="mt-2 text-gray-500 dark:text-gray-400">
-          <strong>LinkedIn:</strong> <Link href="https://www.linkedin.com/in/coreydonahue21010/" className="text-mardi-gras-purple hover:underline">linkedin.com/in/corey</Link>
-        </p>
-        <p className="mt-2 text-gray-500 dark:text-gray-400">
-          <strong>GitHub:</strong> <Link href="https://github.com/CDarts48" className="text-mardi-gras-purple hover:underline">github.com/CDarts48</Link>
-        </p>
-      </div>
-    </div>
-  </div>
+          <div className="container px-4 md:px-6">
+            <div className="flex flex-col md:flex-row justify-between">
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mardi-gras-gold">Get in Touch</h2>
+            </div>
+            <div className="flex flex-col md:flex-row gap-8">
+              <div className="contact-section flex-1">
+                {emailSent ? (
+                  <p className="text-xl font-bold text-mardi-gras-gold">
+                    Thank you for your email! I look forward to speaking with you.
+                  </p>
+                ) : (
+                  <form ref={form} onSubmit={sendEmail} className="mt-8 w-1/2 space-y-4 flex flex-col">
+                    <input
+                      className="flex-grow h-5 rounded-md border border-input bg-background px-3 py-2 text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 mardi-gras-purple"
+                      placeholder="Your Name"
+                      name="from_name"
+                    />
+                    <input
+                      className="flex-grow h-5 rounded-md border border-input bg-background px-3 py-2 text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 mardi-gras-green"
+                      type="email"
+                      placeholder="Your Email"
+                      name="reply_to"
+                    />
+                    <textarea
+                      className="flex-grow min-h-[80px] rounded-md border border-input bg-background px-3 py-2 text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 mardi-gras-gold"
+                      placeholder="Your Message"
+                      name="message"
+                    />
+                    <button
+                      type="button"
+                      onClick={sendEmail}
+                      className="inline-flex items-center justify-center rounded-md text-xl font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-6 py-3 mardi-gras-gold"
+                    >
+                      <Send className="mr-5 h-5 w-5" />
+                      {clickCount === 1 ? "Click again to confirm" : "Send Message"}
+                    </button>
+                  </form>
+                )}
+              </div>
+              <div className="contact-info flex-2 space-y-4 mt-8 md:mt-0">
+                <h3 className="text-2xl font-bold mardi-gras-gold">Contact Information</h3>
+                <p className="mt-4 text-gray-500 dark:text-gray-400">
+                  <strong>Email:</strong>{" "}
+                  <a href="mailto:CDArtsWebDev@gmail.com" className="text-mardi-gras-purple hover:underline">
+                    CDArtsWebDev@gmail.com
+                  </a>
+                </p>
+                <p className="mt-2 text-gray-500 dark:text-gray-400">
+                  <strong>Phone:</strong>{" "}
+                  <a href="tel:+17203918819" className="text-mardi-gras-purple hover:underline">
+                    (720) 391-8819
+                  </a>
+                </p>
+                <p className="mt-2 text-gray-500 dark:text-gray-400">
+                  <strong>LinkedIn:</strong>{" "}
+                  <Link href="https://www.linkedin.com/in/coreydonahue21010/" className="text-mardi-gras-purple hover:underline">
+                    linkedin.com/in/corey
+                  </Link>
+                </p>
+                <p className="mt-2 text-gray-500 dark:text-gray-400">
+                  <strong>GitHub:</strong>{" "}
+                  <Link href="https://github.com/CDarts48" className="text-mardi-gras-purple hover:underline">
+                    github.com/CDarts48
+                  </Link>
+                </p>
+              </div>
+            </div>
+          </div>
         </section>
       </main>
       <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t mardi-gras-gold">
