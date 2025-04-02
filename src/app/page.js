@@ -186,37 +186,37 @@ export default function Home() {
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mardi-gras-purple">About Me</h2>
             <p className="mt-4 max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400 mardi-gras-green">
               Web developer with a background in software sales, agtech, and international relations, bringing unique user-focused insights.
-              Skilled in the MERN stack, AI-driven data analysis, and cloud deployment, specializing in building intelligent, industry-specific applications. Also a purple belt in Jiu Jitsu 🥋🟪
+              Skilled in the MERN stack, Postgres database management, AI-driven data analysis, and cloud deployment, specializing in building intelligent, industry-specific applications. Also a purple belt in Jiu Jitsu 🥋🟪
             </p>
             <div className="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-              <div className="flex items-center space-x-4">
-                <Laptop className="h-8 w-8 mardi-gras-purple" />
-                <div>
-                  <h3 className="font-bold mardi-gras-green">Full-Stack Development</h3>
-                  <p className="text-sm text-gray-500 dark:text-gray-400 mardi-gras-gold">
-                    Proficient in both front-end and back-end technologies
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-center space-x-4">
-                <Rocket className="h-8 w-8 mardi-gras-gold" />
-                <div>
-                  <h3 className="font-bold mardi-gras-purple">Cloud Solutions</h3>
-                  <p className="text-sm text-gray-500 dark:text-gray-400 mardi-gras-green">
-                    Experienced in deploying and managing cloud infrastructure
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-center space-x-4">
-                <Code className="h-8 w-8 mardi-gras-green" />
-                <div>
-                  <h3 className="font-bold mardi-gras-gold">Clean Code</h3>
-                  <p className="text-sm text-gray-500 dark:text-gray-400 mardi-gras-purple">
-                    Committed to writing maintainable and efficient code
-                  </p>
-                </div>
-              </div>
-            </div>
+  <div className="flex flex-col items-center">
+    <Laptop className="h-8 w-8 mardi-gras-purple" />
+    <h3 className="mt-2 text-lg font-bold mardi-gras-green">
+      Full-Stack Development
+    </h3>
+    <p className="text-lg text-gray-500 dark:text-gray-400 mardi-gras-gold text-center">
+      Proficient in both front-end and back-end technologies
+    </p>
+  </div>
+  <div className="flex flex-col items-center">
+    <Rocket className="h-8 w-8 mardi-gras-gold" />
+    <h3 className="mt-2 text-lg font-bold mardi-gras-purple">
+      Cloud Solutions
+    </h3>
+    <p className="text-lg text-gray-500 dark:text-gray-400 mardi-gras-green text-center">
+      Experienced in deploying and managing cloud infrastructure
+    </p>
+  </div>
+  <div className="flex flex-col items-center">
+    <Code className="h-8 w-8 mardi-gras-green" />
+    <h3 className="mt-2 text-lg font-bold mardi-gras-gold">
+      Clean Code
+    </h3>
+    <p className="text-lg text-gray-500 dark:text-gray-400 mardi-gras-purple text-center">
+      Committed to writing maintainable and efficient code
+    </p>
+  </div>
+</div>
           </div>
         </section>
         <section
