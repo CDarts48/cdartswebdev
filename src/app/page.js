@@ -59,7 +59,7 @@ function ProjectCard({ project }) {
           {project.id === 2 || project.id === 3 ? (
             <Link
               href={titleLink}
-              className="text-2xl text-mardi-gras-gold hover:text-gray-200 transition-colors"
+              className="text-xl text-mardi-gras-gold hover:text-gray-200 transition-colors"
             >
               {project.title}
             </Link>
@@ -73,7 +73,8 @@ function ProjectCard({ project }) {
       </div>
       <Link
         href={project.link}
-        className="inline-flex h-9 items-center justify-center rounded-md border border-gray-200 bg-white px-4 py-2 text-sm font-medium shadow-sm transition-colors hover:bg-white hover:text-mardi-gras-purple focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-800 dark:bg-gray-950 dark:hover:bg-white dark:hover:text-mardi-gras-purple dark:focus-visible:ring-gray-300 mardi-gras-green"      >
+        className="inline-flex h-9 items-center justify-center rounded-md border border-gray-200 bg-white px-4 py-2 text-sm font-medium shadow-sm transition-colors hover:bg-gray-100 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-800 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus-visible:ring-gray-300 mardi-gras-green"
+      >
         View Website
       </Link>
     </div>
@@ -255,23 +256,22 @@ export default function Home() {
                   </p>
                 ) : (
                   <form ref={form} onSubmit={sendEmail} className="mt-8 w-1/2 space-y-4 flex flex-col">
-                    <input
-                      className="flex-grow h-5 rounded-md border border-input bg-background px-3 py-2 text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 mardi-gras-purple"
-                      placeholder="Your Name"
-                      name="from_name"
-                    />
-                    <input
-                      className="flex-grow h-5 rounded-md border border-input bg-background px-3 py-2 text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 mardi-gras-green"
-                      type="email"
-                      placeholder="Your Email"
-                      name="reply_to"
-                    />
-                    <textarea
-                      className="flex-grow min-h-[80px] rounded-md border border-input bg-background px-3 py-2 text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 mardi-gras-gold"
-                      placeholder="Your Message"
-                      name="message"
-                    />
-                    <button
+<input
+  className="flex-grow h-5 rounded-md border border-input bg-white text-black px-3 py-2 text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+  placeholder="Your Name"
+  name="from_name"
+/>
+<input
+  className="flex-grow h-5 rounded-md border border-input bg-white text-black px-3 py-2 text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+  type="email"
+  placeholder="Your Email"
+  name="reply_to"
+/>
+<textarea
+  className="flex-grow min-h-[80px] rounded-md border border-input bg-white text-black px-3 py-2 text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+  placeholder="Your Message"
+  name="message"
+/>                    <button
                       type="button"
                       onClick={sendEmail}
                       className="inline-flex items-center justify-center rounded-md text-xl font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-6 py-3 mardi-gras-gold"
