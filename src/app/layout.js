@@ -15,7 +15,6 @@ export const metadata = {
   title: "CDArtsWebDev",
   description: "Corey Donahue's personal Dev website. Bienvenidos!",
 };
-
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
