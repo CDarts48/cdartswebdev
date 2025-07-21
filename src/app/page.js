@@ -170,7 +170,7 @@ export default function Home() {
       <section
   className="relative w-full py-12 md:py-24 lg:py-32 xl:py-48"
   style={{
-    backgroundImage: "url('/HeroBackground3.jpg')",
+    backgroundImage: "url('/HeroBackground3.avif')",
     backgroundSize: "cover",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat"
@@ -247,7 +247,7 @@ export default function Home() {
   id="projects"
   className="relative w-full py-12 md:py-24 lg:py-32"
   style={{
-    backgroundImage: "url('/HeroBackground3.jpg')",
+    backgroundImage: "url('/HeroBackground3.avif')",
     backgroundSize: "cover",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat"
