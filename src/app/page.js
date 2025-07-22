@@ -182,7 +182,7 @@ export default function Home() {
   <div className="relative z-10 container px-4 md:px-6">
     <div className="flex flex-col items-center space-y-4 text-center">
       <div className="space-y-2">
-        <h1 className="fontSize: '3rem' font-bold tracking-tighter drop-shadow-lg sm:text-4xl md:text-5xl lg:text-6xl text-white bg-black bg-opacity-15 p-4 rounded-lg">
+        <h1 className="text-5xl font-bold tracking-tighter drop-shadow-lg sm:text-4xl md:text-5xl lg:text-6xl text-white bg-black bg-opacity-15 p-4 rounded-lg">
           Corey Donahue
         </h1>
        <p className="mx-auto max-w-[700px] text-white md:text-2xl font-extrabold drop-shadow-2xl bg-black bg-opacity-10 p-4 rounded-lg">
