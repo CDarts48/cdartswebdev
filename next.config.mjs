@@ -1,9 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: "export", // Enables static export
-  trailingSlash: true, // Helps with correct routing on GitHub Pages
+  output: "standalone", // Enables standalone output for Docker
   images: {
-    unoptimized: true, // Disable Image Optimization API
     remotePatterns: [
       {
         protocol: 'https',

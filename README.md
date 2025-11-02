@@ -29,8 +29,31 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## Deploy on GitHub Pages
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+This project is configured for automatic deployment to GitHub Pages.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Setup (One-Time):
+
+1. Go to your repository **Settings → Pages**
+2. Under "Build and deployment":
+   - Source: **GitHub Actions**
+3. That's it!
+
+### Deploy:
+
+```bash
+git add .
+git commit -m "Your changes"
+git push origin main
+```
+
+Your site will automatically deploy to: `https://cdarts48.github.io/cdartswebdev/`
+
+### Custom Domain (Optional):
+
+1. Add a `CNAME` file with your domain
+2. In GitHub **Settings → Pages → Custom domain**
+3. Configure DNS with your registrar
+
+**Cost:** FREE! 🎉
